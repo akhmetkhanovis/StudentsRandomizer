@@ -6,39 +6,56 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        label {
-            text-indent: 1.5em;
-            text-align: justify;
-        }
-        input {
-            text-indent: 1.5em;
-            text-align: justify;
+        table {
+            text-indent: 2em;
         }
     </style>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/students/{id}(id=${student.getId()})}" th:object="${student}">
-    <label for="surname">Фамилия: </label>
-    <input type="text" th:field="*{surname}" id="surname"/>
-    <br/>
-    <label for="name">Имя: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br/>
-    <label for="questionScore">Баллы за вопросы: </label>
-    <input type="text" th:field="*{questionScore}" id="questionScore"/>
-    <br/>
-    <label for="answerScore">Баллы за ответы: </label>
-    <input type="text" th:field="*{answerScore}" id="answerScore"/>
-    <br/>
-    <label for="team">№ команды: </label>
-    <input type="text" th:field="*{team}" id="team"/>
-    <br>
-    <label for="isCaptain">Капитан </label>
-    <input type="checkbox" name="isCaptain" value="${student.isCaptain}"
-           th:field="*{captain}" th:checked="${student.isCaptain()}" id="isCaptain"/>
-    <br/>
-    <hr/>
-    <input type="submit" value="Обновить"/>
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="surname">Фамилия: </label></td>
+            <td><input type="text" th:field="*{surname}" id="surname"/></td>
+        </tr>
+        <tr>
+            <td><label for="name">Имя: </label></td>
+            <td><input type="text" th:field="*{name}" id="name"/></td>
+        </tr>
+        <tr>
+            <td><label for="questionScore">Баллы за вопросы: </label></td>
+            <td><input type="text" th:field="*{questionScore}" id="questionScore"/></td>
+        </tr>
+        <tr>
+            <td><label for="answerScore">Баллы за ответы: </label></td>
+            <td><input type="text" th:field="*{answerScore}" id="answerScore"/></td>
+        </tr>
+        <tr>
+            <td><label for="team">№ команды: </label></td>
+            <td><input type="text" th:field="*{team}" id="team"/></td>
+        </tr>
+        <tr>
+            <td><label for="isCaptain">Капитан </label></td>
+            <td><input type="checkbox" name="isCaptain" value="${student.isCaptain}"
+                       th:field="*{captain}" th:checked="${student.isCaptain()}" id="isCaptain"/></td>
+        </tr>
+        <tr>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td th:align="center"><input type="submit" value="Обновить"/></td>
+        </tr>
+        </tbody>
+    </table>
+
 </form>
 </body>
 </html>
