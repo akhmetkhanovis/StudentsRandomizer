@@ -3,7 +3,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="create-students-table" author="ildar.akhmetkhanov">
+    <changeSet id="V1_0_1__create_tables_students" author="ildar.akhmetkhanov">
         <createTable tableName="students">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -17,13 +17,13 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="captain" type="boolean">
+            <column name="captain" type="boolean" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="question_score" type="double"/>
+            <column name="question_score" type="double" defaultValue="0"/>
 
-            <column name="answer_score" type="double"/>
+            <column name="answer_score" type="double" defaultValue="0"/>
 
             <column name="team" type="BIGINT">
                 <constraints nullable="false"/>

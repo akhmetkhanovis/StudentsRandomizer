@@ -3,270 +3,176 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="insert-students-data" author="ildar.akhmetkhanov">
+    <changeSet id="V1_0_2__insert_data_into_students" author="ildar.akhmetkhanov">
         <insert tableName="students">
             <column name="name" value="Максим"/>
             <column name="surname" value="Ананьев"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="1"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Юрий"/>
             <column name="surname" value="Симонов"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="1"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Егор"/>
             <column name="surname" value="Полтараков"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="1"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Роман"/>
             <column name="surname" value="Деревяго"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="1"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Пётр"/>
             <column name="surname" value="Пятков"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="2"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Эдуард"/>
             <column name="surname" value="Гайниев"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="2"/>
-        </insert>
-        <insert tableName="students">
-            <column name="name" value="Алексей"/>
-            <column name="surname" value="Карпенков"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="2"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Александр"/>
             <column name="surname" value="Чернов"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="3"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Виталий"/>
             <column name="surname" value="Белинский"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="3"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Александр"/>
             <column name="surname" value="Шамарин"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="4"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Ильдар"/>
             <column name="surname" value="Ахметханов"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="4"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Виталий"/>
             <column name="surname" value="Дашков"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="4"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Сергей"/>
             <column name="surname" value="Войтенков"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="4"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Алексей"/>
             <column name="surname" value="Шерхонов"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="5"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Ильназ"/>
             <column name="surname" value="Фатыхов"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="5"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Антон"/>
             <column name="surname" value="Цёма"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="5"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Анна"/>
             <column name="surname" value="Занько"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="6"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Михаил"/>
             <column name="surname" value="Егоров"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="6"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Вадим"/>
             <column name="surname" value="Валеев"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="6"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Марина"/>
             <column name="surname" value="Нестерова"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="7"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Анатолий"/>
             <column name="surname" value="Епифанов"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="7"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Александр"/>
             <column name="surname" value="Шуляев"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="7"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Тимур"/>
             <column name="surname" value="Асфандиаров"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
             <column name="team" value="7"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Станислав"/>
             <column name="surname" value="Федоренко"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="9"/>
+            <column name="team" value="8"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Марк"/>
             <column name="surname" value="Азаев"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="9"/>
+            <column name="team" value="8"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Дмитрий"/>
             <column name="surname" value="Борисов"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="9"/>
+            <column name="team" value="8"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Александр"/>
             <column name="surname" value="Симаков"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="10"/>
+            <column name="team" value="9"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Денис"/>
             <column name="surname" value="Тоболев"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="10"/>
+            <column name="team" value="9"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Дмитрий"/>
             <column name="surname" value="Шкарпетин"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="10"/>
+            <column name="team" value="9"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Александр"/>
             <column name="surname" value="Мороз"/>
             <column name="captain" valueBoolean="true"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="12"/>
+            <column name="team" value="10"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Виктор"/>
             <column name="surname" value="Сажин"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="12"/>
+            <column name="team" value="10"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Василий"/>
             <column name="surname" value="Шолков"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="12"/>
+            <column name="team" value="10"/>
         </insert>
         <insert tableName="students">
             <column name="name" value="Ярослав"/>
             <column name="surname" value="Детский"/>
-            <column name="captain" valueBoolean="false"/>
-            <column name="question_score" value="0"/>
-            <column name="answer_score" value="0"/>
-            <column name="team" value="12"/>
+            <column name="team" value="10"/>
         </insert>
     </changeSet>
 

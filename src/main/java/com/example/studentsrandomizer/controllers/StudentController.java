@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/students")
@@ -20,7 +20,7 @@ public class StudentController {
 
     @GetMapping()
     public String allStudents(Model model) {
-        TreeMap<Integer, List<Student>> students = studentService.getStudents();
+        Map<Integer, List<Student>> students = studentService.getStudents();
         model.addAttribute("students", students);
         return "students";
     }

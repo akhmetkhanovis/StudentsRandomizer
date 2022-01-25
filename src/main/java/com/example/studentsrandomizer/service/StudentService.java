@@ -33,11 +33,9 @@ public class StudentService {
         }
     }
 
-    public TreeMap<Integer, List<Student>> getStudents() {
-        List<Student> studentsList = studentRepository.findAll();
-        Map<Integer, List<Student>> collect = studentsList.stream()
-                .collect(Collectors.groupingBy(Student::getTeam, Collectors.toList()));
-        return new TreeMap<>(collect);
+    public Map<Integer, List<Student>> getStudents() {
+        return studentRepository.findAll().stream()
+                .collect(Collectors.groupingBy(Student::getTeam, TreeMap::new, Collectors.toList()));
     }
 
 }
