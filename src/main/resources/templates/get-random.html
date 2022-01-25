@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Random student</title>
+</head>
+<body>
+<a href="/students">Назад к списку</a>
+<br/>
+<br/>
+<a href="/students/reset-randomizing">Начать заново</a>
+<br/>
+<hr/>
+
+<h2>
+    <a th:text="${randomStudent.getSurname() + ' ' + randomStudent.getName()}">value</a>
+</h2>
+
+</body>
+</html>
