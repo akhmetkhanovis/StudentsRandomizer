@@ -22,8 +22,7 @@ public class StudentService {
     }
 
     public void update(Long id, Student student) {
-        Student studentToBeUpdated = studentRepository.findById(id).get();
-        studentToBeUpdated = new Student(student);
+        Student studentToBeUpdated = new Student(student);
         studentRepository.save(studentToBeUpdated);
 
         if (student.isCaptain()) {

@@ -12,6 +12,7 @@ import java.util.Objects;
 @Setter
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
 
