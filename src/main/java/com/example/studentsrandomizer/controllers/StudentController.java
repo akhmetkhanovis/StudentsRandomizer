@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,11 @@ public class StudentController {
     public String allStudents(Model model) {
         Map<Integer, List<Student>> students = studentService.getStudents();
         model.addAttribute("students", students);
+
+        System.out.println(Arrays.toString(studentService.getRandomStudents()));
+
         return "students";
+
     }
 
     @GetMapping("/{id}")
@@ -41,5 +46,12 @@ public class StudentController {
     public String update(@ModelAttribute("student") Student student, @PathVariable("id") Long id) {
         studentService.update(id, student);
         return "redirect:/students";
+    }
+
+    @GetMapping("/get-random")
+    public String getRandomStudents(Model model) {
+        Student[] pair = studentService.getRandomStudents();
+        model.addAttribute("pair", pair);
+        return "get-random";
     }
 }
