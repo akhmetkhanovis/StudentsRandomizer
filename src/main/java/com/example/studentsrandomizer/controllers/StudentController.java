@@ -3,11 +3,12 @@ package com.example.studentsrandomizer.controllers;
 import com.example.studentsrandomizer.entity.Student;
 import com.example.studentsrandomizer.entity.StudentPair;
 import com.example.studentsrandomizer.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import java.util.Map;
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
+    Logger logger = LoggerFactory.getLogger("RandomizerLogger");
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -24,9 +26,7 @@ public class StudentController {
     public String allStudents(Model model) {
         Map<Integer, List<Student>> students = studentService.getStudents();
         model.addAttribute("students", students);
-
         return "students";
-
     }
 
     @GetMapping("/{id}")
@@ -50,6 +50,11 @@ public class StudentController {
     @GetMapping("/get-random")
     public String getRandomStudents(Model model) {
         StudentPair pair = studentService.getRandomStudents();
+
+        logger.info("Задает вопрос: " + pair.getPair().get(0)
+                + " <<<<>>>> Отвечает: " + pair.getPair().get(1));
+
+        model.addAttribute("studentPair", new StudentPair(pair.getPair()));
         model.addAttribute("studentPair", new StudentPair(pair.getPair()));
         return "get-random";
     }

@@ -3,6 +3,8 @@ package com.example.studentsrandomizer.service;
 import com.example.studentsrandomizer.entity.Student;
 import com.example.studentsrandomizer.entity.StudentPair;
 import com.example.studentsrandomizer.repository.StudentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,6 +17,7 @@ public class StudentService {
     private Student asking;
     private Student answering;
     private Student firstAsking;
+    Logger logger = LoggerFactory.getLogger("RandomizerLogger");
 
 
     public StudentService(StudentRepository studentRepository) {
@@ -47,7 +50,7 @@ public class StudentService {
         StudentPair pair = new StudentPair();
 
         if (forRandomizing.isEmpty()) {
-            forRandomizing = studentRepository.findAll();
+            resetRandomizing();
         }
 
         if (asking == null && firstAsking == null) {
@@ -111,6 +114,7 @@ public class StudentService {
     }
 
     public void resetRandomizing() {
+        logger.info("**********Start randomizing**********");
         forRandomizing = studentRepository.findAll();
     }
 

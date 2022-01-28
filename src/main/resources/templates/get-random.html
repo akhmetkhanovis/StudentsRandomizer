@@ -13,6 +13,7 @@
     <div class="row">
         <div class="col-md-6">
             <a class="btn btn-info" href="#" th:href="@{/students}"> На главную </a>
+            <a class="btn btn-info" href="#" th:href="@{/students/reset-randomizing}"> Начать генерацию заново </a>
             <form action="#" class="form-horizontal"
                   th:action="@{/students/set-score}"
                   th:object="${studentPair}"
