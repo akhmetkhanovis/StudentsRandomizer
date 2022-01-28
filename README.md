@@ -21,4 +21,5 @@
 * Thymeleaf
 * Liquibase
 ### Как запустить?
-Склонировать репозиторий, запустить метод main() в классе StudentsRandomizerApplication.
+* Склонировать репозиторий, запустить метод main() в классе StudentsRandomizerApplication.
+* Перейти в браузере по адресу localhost:8080/students
