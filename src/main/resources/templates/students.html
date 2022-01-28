@@ -49,13 +49,11 @@
             <a th:href="@{/students/{id}(id=${student.getId()})}" th:text="${student}">student</a>
         </td>
         <td>
-            <span th:if="${student.getQuestionScore() == 0}"> </span>
             <span th:unless="${student.getQuestionScore() == 0}">
                 <a th:text="${student.getQuestionScore()}"></a>
             </span>
         </td>
         <td>
-            <span th:if="${student.getAnswerScore() == 0}"> </span>
             <span th:unless="${student.getAnswerScore() == 0}">
                 <a th:text="${student.getAnswerScore()}"></a>
             </span>

@@ -1,6 +1,7 @@
 package com.example.studentsrandomizer.service;
 
 import com.example.studentsrandomizer.entity.Student;
+import com.example.studentsrandomizer.entity.StudentPair;
 import com.example.studentsrandomizer.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,9 @@ import java.util.stream.Collectors;
 public class StudentService {
     private final StudentRepository studentRepository;
     private List<Student> forRandomizing = new ArrayList<>();
-    private Student studentAsking;
-    private Student firstStudentAsking;
+    private Student asking;
+    private Student answering;
+    private Student firstAsking;
 
 
     public StudentService(StudentRepository studentRepository) {
@@ -40,42 +42,70 @@ public class StudentService {
                 .collect(Collectors.groupingBy(Student::getTeam, TreeMap::new, Collectors.toList()));
     }
 
-    public Student[] getRandomStudents() {
-        Student[] pairOfStudents = new Student[2];
+    public StudentPair getRandomStudents() {
+        int counter = 0;
+        StudentPair pair = new StudentPair();
 
         if (forRandomizing.isEmpty()) {
-            System.out.println("-------------------------студенты всё-------------------------");
             forRandomizing = studentRepository.findAll();
-            studentAsking = null;
-            firstStudentAsking = null;
         }
 
-        if (studentAsking == null) {
-            studentAsking = forRandomizing.get(getRandomId());
-            firstStudentAsking = studentAsking;
+        if (asking == null && firstAsking == null) {
+            asking = forRandomizing.get(randomId());
+            firstAsking = asking;
         }
 
-        Student studentAnswering = forRandomizing.get(getRandomId());
+        answering = forRandomizing.get(randomId());
 
-        if (forRandomizing.size() <= 4) {
-            pairOfStudents[1] = studentAnswering;
-        } else {
-            while (studentAsking.getTeam() == studentAnswering.getTeam()) {
-                studentAnswering = forRandomizing.get(getRandomId());
+        while (asking.getTeam() == answering.getTeam() || asking.equals(answering)) {
+            answering = forRandomizing.get(randomId());
+
+            if (counter > 2) {
+                Set<Integer> teams = forRandomizing.stream()
+                        .map(Student::getTeam)
+                        .collect(Collectors.toSet());
+                if (teams.size() < 2) {
+                    if (!asking.equals(answering)) {
+                        break;
+                    } else if (forRandomizing.size() == 1 && asking.equals(answering)) {
+                        break;
+                    }
+                }
             }
+            counter++;
         }
 
-        pairOfStudents[0] = (studentAsking.equals(firstStudentAsking)) ? forRandomizing.get(getRandomId()) : studentAsking; // переделать
-        pairOfStudents[1] = studentAnswering;
+        pair.addStudent(asking);
+        pair.addStudent(answering);
 
-        studentAsking = studentAnswering;
+        if (firstAsking.equals(answering)) {
+            forRandomizing.remove(answering);
+            asking = null;
+            firstAsking = null;
+        } else {
+            asking = answering;
+            forRandomizing.remove(answering);
+        }
 
-        forRandomizing.remove(studentAnswering);
-
-        return pairOfStudents;
+        return pair;
     }
 
-    private int getRandomId() {
+    public void addScore(StudentPair pair) {
+        Student stAsking = pair.getPair().get(0);
+        Student stAnswering = pair.getPair().get(1);
+
+        Student studentToBeUpdatedAsking = studentRepository.findById(stAsking.getId()).get();
+        studentToBeUpdatedAsking.setQuestionScore(studentToBeUpdatedAsking.getQuestionScore() + stAsking.getQuestionScore());
+        studentToBeUpdatedAsking.setAnswerScore(studentToBeUpdatedAsking.getAnswerScore() + stAsking.getAnswerScore());
+        studentRepository.save(studentToBeUpdatedAsking);
+
+        Student studentToBeUpdatedAnswering = studentRepository.findById(stAnswering.getId()).get();
+        studentToBeUpdatedAnswering.setQuestionScore(studentToBeUpdatedAnswering.getQuestionScore() + stAnswering.getQuestionScore());
+        studentToBeUpdatedAnswering.setAnswerScore(studentToBeUpdatedAnswering.getAnswerScore() + stAnswering.getAnswerScore());
+        studentRepository.save(studentToBeUpdatedAnswering);
+    }
+
+    private int randomId() {
         Random random = new Random();
         return random.nextInt(forRandomizing.size());
     }

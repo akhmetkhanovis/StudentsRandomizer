@@ -1,6 +1,7 @@
 package com.example.studentsrandomizer.controllers;
 
 import com.example.studentsrandomizer.entity.Student;
+import com.example.studentsrandomizer.entity.StudentPair;
 import com.example.studentsrandomizer.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,6 @@ public class StudentController {
     public String allStudents(Model model) {
         Map<Integer, List<Student>> students = studentService.getStudents();
         model.addAttribute("students", students);
-
-        System.out.println(Arrays.toString(studentService.getRandomStudents()));
 
         return "students";
 
@@ -50,8 +49,21 @@ public class StudentController {
 
     @GetMapping("/get-random")
     public String getRandomStudents(Model model) {
-        Student[] pair = studentService.getRandomStudents();
-        model.addAttribute("pair", pair);
+        StudentPair pair = studentService.getRandomStudents();
+        model.addAttribute("studentPair", new StudentPair(pair.getPair()));
         return "get-random";
+    }
+
+    @PostMapping("/set-score")
+    public String setScoreAsking(@ModelAttribute StudentPair pair, Model model) {
+        model.addAttribute("studentPair", pair);
+        studentService.addScore(pair);
+        return "redirect:/students/get-random";
+    }
+
+    @GetMapping("/reset-randomizing")
+    public String resetRandomizing() {
+        studentService.resetRandomizing();
+        return "redirect:/students/get-random";
     }
 }
