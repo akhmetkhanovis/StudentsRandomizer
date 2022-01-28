@@ -14,12 +14,14 @@
         }
 
         table {
-            width: content-box;/
+            width: content-box;
+        /
         }
 
         table.fixed {
             table-layout: fixed;
         }
+
         table.fixed td {
             overflow: hidden;
         }
@@ -30,7 +32,7 @@
 <h3><a href="/students/get-random">Начать опрос</a></h3>
 <br/>
 <hr/>
-
+<a th:href="@{/students/student-new}">Добавить нового студента</a>
 <table class="table table-sm">
     <thead>
     <tr>
@@ -41,24 +43,24 @@
     </thead>
     <tbody>
     <div th:each="entry : ${students.entrySet()}">
-    <tr>
-        <td th:align="center" th:text="${'Команда ' + entry.getKey()}"></td>
-    </tr>
-    <tr th:each="student : ${entry.getValue()}">
-        <td>
-            <a th:href="@{/students/{id}(id=${student.getId()})}" th:text="${student}">student</a>
-        </td>
-        <td>
+        <tr>
+            <td th:align="center" th:text="${'Команда ' + entry.getKey()}"></td>
+        </tr>
+        <tr th:each="student : ${entry.getValue()}">
+            <td>
+                <a th:href="@{/students/{id}(id=${student.getId()})}" th:text="${student}">student</a>
+            </td>
+            <td>
             <span th:unless="${student.getQuestionScore() == 0}">
                 <a th:text="${student.getQuestionScore()}"></a>
             </span>
-        </td>
-        <td>
+            </td>
+            <td>
             <span th:unless="${student.getAnswerScore() == 0}">
                 <a th:text="${student.getAnswerScore()}"></a>
             </span>
-        </td>
-    </tr>
+            </td>
+        </tr>
     </div>
     </tbody>
 </table>

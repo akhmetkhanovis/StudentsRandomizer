@@ -114,4 +114,11 @@ public class StudentService {
         forRandomizing = studentRepository.findAll();
     }
 
+    public void save(Student student) {
+        studentRepository.save(student);
+    }
+
+    public void delete(long id) {
+        studentRepository.deleteById(id);
+    }
 }

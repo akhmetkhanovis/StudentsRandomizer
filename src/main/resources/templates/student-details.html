@@ -36,6 +36,11 @@
     <tr>
         <td><a th:href="@{/students/{id}/edit(id=${student.getId()})}">Редактировать</a></td>
     </tr>
+    <tr><td><hr/><br/></td></tr>
+    <tr>
+        <td><form th:method="DELETE" th:action="@{/students/{id}(id=${student.getId()})}">
+            <input type="submit" value="Удалить"/></form></td>
+    </tr>
     <tr>
         <td>
             <hr/>

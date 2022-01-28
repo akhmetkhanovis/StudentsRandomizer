@@ -66,4 +66,21 @@ public class StudentController {
         studentService.resetRandomizing();
         return "redirect:/students/get-random";
     }
+
+    @PostMapping()
+    public String create(@ModelAttribute("newStudent") Student student) {
+        studentService.save(student);
+        return "redirect:/students";
+    }
+
+    @GetMapping("student-new")
+    public String newStudent(@ModelAttribute("newStudent") Student student) {
+        return "student-new";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteStudent(@PathVariable("id") long id) {
+        studentService.delete(id);
+        return "redirect:/students";
+    }
 }
