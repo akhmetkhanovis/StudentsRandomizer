@@ -69,7 +69,7 @@ public class StudentController {
     @GetMapping("/reset-randomizing")
     public String resetRandomizing() {
         studentService.resetRandomizing();
-        return "redirect:/students/get-random";
+        return "redirect:/students";
     }
 
     @PostMapping()
