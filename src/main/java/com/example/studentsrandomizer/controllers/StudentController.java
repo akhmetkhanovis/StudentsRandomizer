@@ -1,7 +1,8 @@
 package com.example.studentsrandomizer.controllers;
 
 import com.example.studentsrandomizer.entity.Student;
-import com.example.studentsrandomizer.entity.StudentPair;
+import com.example.studentsrandomizer.utils.StudentPair;
+import com.example.studentsrandomizer.service.RandomStudentService;
 import com.example.studentsrandomizer.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,12 @@ import java.util.Map;
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
+    private final RandomStudentService randomService;
     Logger logger = LoggerFactory.getLogger("RandomizerLogger");
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, RandomStudentService randomService) {
         this.studentService = studentService;
+        this.randomService = randomService;
     }
 
     @GetMapping()
@@ -47,29 +50,37 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @GetMapping("/get-random")
+    @GetMapping("/random-quiz")
     public String getRandomStudents(Model model) {
-        StudentPair pair = studentService.getRandomStudents();
+        StudentPair pair = randomService.loadStudentPairFromSave();
 
-        logger.info("Задает вопрос: " + pair.getPair().get(0)
-                + " <<<<>>>> Отвечает: " + pair.getPair().get(1));
+        if (pair == null) {
+            return "quiz-not-started-yet";
+        } else {
 
-        model.addAttribute("studentPair", new StudentPair(pair.getPair()));
-        model.addAttribute("studentPair", new StudentPair(pair.getPair()));
-        return "get-random";
+            model.addAttribute("studentPair", new StudentPair(pair.getPair()));
+            model.addAttribute("studentPair", new StudentPair(pair.getPair()));
+            return "random-quiz";
+        }
+    }
+
+    @GetMapping("random-quiz/get-random-pair")
+    public String getRandomPair() {
+        randomService.collectStudentsToPair();
+        return "redirect:/students/random-quiz";
     }
 
     @PostMapping("/set-score")
-    public String setScoreAsking(@ModelAttribute StudentPair pair, Model model) {
+    public String nextPair(@ModelAttribute StudentPair pair, Model model) {
         model.addAttribute("studentPair", pair);
         studentService.addScore(pair);
-        return "redirect:/students/get-random";
+        return "redirect:/students/random-quiz/get-random-pair";
     }
 
     @GetMapping("/reset-randomizing")
     public String resetRandomizing() {
-        studentService.resetRandomizing();
-        return "redirect:/students";
+        randomService.resetRandomizing();
+        return "redirect:/students/random-quiz/get-random-pair";
     }
 
     @PostMapping()

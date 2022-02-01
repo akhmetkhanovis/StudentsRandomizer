@@ -80,7 +80,7 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(name, student.name) && Objects.equals(surname, student.surname);
+        return captain == student.captain && team == student.team && id.equals(student.id) && name.equals(student.name) && surname.equals(student.surname);
     }
 
     @Override
